@@ -123,4 +123,42 @@ public class Event implements Serializable {
 		this.users = users;
 	}
 	
+	// override equals and hashCode so that users do not add multiple copies of the same event
+	@Override
+	public boolean equals(Object o){
+       if (o == null)
+		   return false;
+			
+		if (o == this)
+		   return true;
+			
+		if (o.getClass() != getClass())
+			return false;
+      
+       Event e = (Event)o;
+       return (this.id == e.id) &&
+              (this.name != null && this.name.equals(e.name)) &&
+              (this.date != null && this.date.equals(e.date)) &&
+              (this.time != null && this.time.equals(e.time)) &&
+              (this.location != null && this.location.equals(e.location)) &&
+              (this.category != null && this.category.equals(e.category)) &&
+              (this.status != null && this.status.equals(e.status)) &&
+              (this.ownerid != null && this.ownerid.equals(e.ownerid));
+   }
+   
+	@Override
+    public int hashCode(Object o){
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + this.id;
+		result = prime * result + (this.name != null ? this.name.hashCode() : 0);
+		result = prime * result + (this.date != null ? this.date.hashCode() : 0);
+		result = prime * result + (this.time != null ? this.time.hashCode() : 0);
+		result = prime * result + (this.location != null ? this.location.hashCode() : 0);
+		result = prime * result + (this.category != null ? this.category.hashCode() : 0);
+		result = prime * result + (this.status != null ? this.status.hashCode() : 0);
+		result = prime * result + (this.ownerid != null ? this.ownerid.hashCode() : 0);
+		return result;
+	}
+	
 }

@@ -87,6 +87,7 @@ public class User implements Serializable {
 	}
 	
 	public void addEvent(Event event) {
+		// TODO: this might be better implemented using a set of events
 		if (!this.events.contains(event)) {
 			this.events.add(event);
 		}
